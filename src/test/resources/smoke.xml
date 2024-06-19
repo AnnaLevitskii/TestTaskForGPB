@@ -46,4 +46,11 @@
             <class name="com.ui.RemoveContactTest"/>
         </classes>
     </test>
+    <test name="smoke_api">
+        <classes>
+            <class name="com.api.RegistrationTests"/>
+            <class name="com.api.LoginTests"/>
+            <class name="com.api.AddContactTests"/>
+        </classes>
+    </test>
 </suite>
