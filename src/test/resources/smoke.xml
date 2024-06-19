@@ -1,0 +1,49 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="smoke" verbose="1">
+    <test name="smoke_chrome_phone">
+        <parameter name="screen" value="M_M"/>
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.ui.LoginTest"/>
+            <class name="com.ui.AddContactTest"/>
+            <class name="com.ui.RemoveContactTest"/>
+        </classes>
+    </test>
+    <test name="smoke_safari_phone">
+        <parameter name="screen" value="M_M"/>
+        <parameter name="browser" value="safari"/>
+        <classes>
+            <class name="com.ui.LoginTest"/>
+            <class name="com.ui.AddContactTest"/>
+            <class name="com.ui.RemoveContactTest"/>
+        </classes>
+    </test>
+    <test name="smoke_safari">
+        <parameter name="screen" value="D_S"/>
+        <parameter name="browser" value="safari"/>
+        <classes>
+            <class name="com.ui.LoginTest"/>
+            <class name="com.ui.AddContactTest"/>
+            <class name="com.ui.RemoveContactTest"/>
+        </classes>
+    </test>
+    <test name="smoke_chrome">
+        <parameter name="screen" value="D_S"/>
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.ui.LoginTest"/>
+            <class name="com.ui.AddContactTest"/>
+            <class name="com.ui.RemoveContactTest"/>
+        </classes>
+    </test>
+    <test name="smoke_firefox">
+        <parameter name="screen" value="D_S"/>
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="com.ui.LoginTest"/>
+            <class name="com.ui.AddContactTest"/>
+            <class name="com.ui.RemoveContactTest"/>
+        </classes>
+    </test>
+</suite>
