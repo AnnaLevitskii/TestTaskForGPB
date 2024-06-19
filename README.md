@@ -1,4 +1,4 @@
-# uiWorkForGPB
+# TestWorkForGPB
 
 ## Run locally options
 Run smoke suite:
