@@ -2,6 +2,7 @@ package com.api;
 
 import com.core.exceptions.TokenNotReceivedException;
 import com.core.models.dto.AuthRequestDTO;
+import io.qameta.allure.Step;
 
 import static com.core.utils.Constants.PASSWORD;
 import static com.core.utils.Constants.USER_NAME;
@@ -18,7 +19,6 @@ public class Token {
         return currentToken;
     }
 
-
     private static String getToken(){
         AuthRequestDTO auth = AuthRequestDTO.builder().username(USER_NAME).password(PASSWORD).build();
         try {
@@ -28,8 +28,4 @@ public class Token {
         }
 
     }
-
-
-
-
 }

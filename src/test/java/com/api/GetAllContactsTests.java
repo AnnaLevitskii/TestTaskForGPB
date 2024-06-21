@@ -3,6 +3,8 @@ package com.api;
 import com.core.listeners.RetryAnalyzer;
 import com.core.models.dto.ContactDTO;
 import com.core.providers.CleanupProvider;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -24,7 +26,7 @@ public class GetAllContactsTests extends ContactController {
         Assert.assertEquals(statusCodeAddContact(contactDTO3), 200);
 
     }
-
+    @Severity(SeverityLevel.NORMAL)
     @Test(invocationCount = 5, retryAnalyzer = RetryAnalyzer.class)
     public void getAllContacts_success(){
         List<ContactDTO> list = getAllContactsList();

@@ -1,6 +1,8 @@
 package com.ui.pages;
 
 import com.core.models.dto.ContactDTO;
+import com.core.providers.ScreenProvider;
+import com.core.providers.ScreenshotProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
