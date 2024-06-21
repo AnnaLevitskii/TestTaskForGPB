@@ -5,6 +5,8 @@ import com.core.models.dto.AuthRequestDTO;
 import com.core.models.dto.AuthResponceDTO;
 import com.core.models.dto.ErrorDto;
 import com.core.providers.PropertiesProvider;
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -19,6 +21,7 @@ public class AuthController {
 
     private static Response auth(AuthRequestDTO authRequestDTO, String url){
         return given()
+                .filter(new AllureRestAssured())
                 .body(authRequestDTO)
                 .contentType(ContentType.JSON)
                 .when()

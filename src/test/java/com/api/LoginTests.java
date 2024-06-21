@@ -2,6 +2,8 @@ package com.api;
 
 import com.core.listeners.RetryAnalyzer;
 import com.core.models.dto.AuthRequestDTO;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,31 +13,31 @@ import static com.core.utils.Constants.USER_NAME;
 
 
 public class LoginTests extends AuthController {
-
+    @Severity(SeverityLevel.BLOCKER)
     @Test(invocationCount = 3, retryAnalyzer = RetryAnalyzer.class)
     public void login_success(){
         AuthRequestDTO auth = AuthRequestDTO.builder().username(USER_NAME).password(PASSWORD).build();
         Assert.assertEquals(statusCodeAuth(auth, urlLogin), 200);
     }
-
+    @Severity(SeverityLevel.NORMAL)
     @Test(invocationCount = 5, retryAnalyzer = RetryAnalyzer.class)
     public void login_negativePassvordWrong(){
         AuthRequestDTO auth = AuthRequestDTO.builder().username(USER_NAME).password(randomPasswordWrong()).build();
         Assert.assertEquals(statusCodeAuth(auth, urlLogin), 401);
     }
-
+    @Severity(SeverityLevel.NORMAL)
     @Test(invocationCount = 5, retryAnalyzer = RetryAnalyzer.class)
     public void login_negativePassvord(){
         AuthRequestDTO auth = AuthRequestDTO.builder().username(USER_NAME).password(randomPassword()).build();
         Assert.assertEquals(statusCodeAuth(auth, urlLogin), 401);
     }
-
+    @Severity(SeverityLevel.NORMAL)
     @Test(invocationCount = 5, retryAnalyzer = RetryAnalyzer.class)
     public void login_negativeEmail(){
         AuthRequestDTO auth = AuthRequestDTO.builder().username(randomEmail()).password(PASSWORD).build();
         Assert.assertEquals(statusCodeAuth(auth, urlLogin), 401);
     }
-
+    @Severity(SeverityLevel.NORMAL)
     @Test(invocationCount = 5, retryAnalyzer = RetryAnalyzer.class)
     public void login_negativeEmailWrong(){
         AuthRequestDTO auth = AuthRequestDTO.builder().username(randomEmailWrong()).password(PASSWORD).build();

@@ -5,6 +5,8 @@ import com.core.models.dto.ErrorDto;
 import com.core.models.dto.GettAllContactsDTO;
 
 
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -26,6 +28,7 @@ public class ContactController {
         requestSpecificationToken = new RequestSpecBuilder()
                 .addHeader("Authorization",getCurrentToken())
                 .setContentType(ContentType.JSON)
+                .addFilter(new AllureRestAssured())
                 .build();
     }
     private Response addContact(ContactDTO contactDTO){

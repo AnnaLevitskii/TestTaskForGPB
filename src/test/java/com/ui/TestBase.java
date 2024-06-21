@@ -3,10 +3,13 @@ package com.ui;
 import com.api.Token;
 import com.core.models.enums.ScreenSize;
 import com.core.providers.ScreenProvider;
+import com.core.providers.ScreenshotProvider;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -39,9 +42,28 @@ public class TestBase {
             driver.navigate().refresh();
         }
     }
+
+    @AfterMethod
+    public void afterMethod(ITestResult result) {
+        switch (result.getStatus()) {
+            case ITestResult.SUCCESS:
+                break;
+            case ITestResult.FAILURE:
+                Allure.getLifecycle().addAttachment(
+                    "screenshot", "image/png", "png",
+                     new ScreenshotProvider(driver).takeScreenshotAsBytes());
+                break;
+            case ITestResult.SKIP:
+                break;
+        }
+    }
+
     @AfterClass(alwaysRun = true)
-    public static void tearDown(){
+    public void tearDown(){
+        //allureAddAttachment();
         driver.quit();
     }
+
+
 
 }

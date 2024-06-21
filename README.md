@@ -28,6 +28,10 @@ Run all uis:
 ### `gradle clean test`
 
 
+Run Allure:
+ `gradle runAllure`
+
+
 ## Options run with different screen sizes
 -Pscreen  --> com.core.models.enums.ScreenSize  --> com.core.providers.ScreenProvider
 DESKTOP_L(1920 x 1080),
