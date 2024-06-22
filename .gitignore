@@ -3,7 +3,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-configuration.properties
+*.properties
+allure-report
+.allure
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
