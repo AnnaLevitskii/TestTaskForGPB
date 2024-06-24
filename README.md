@@ -1,5 +1,7 @@
 # uiWorkForGPB
 
+docker-compose up -d
+
 ## Run locally options
 Run smoke suite:
 ### `gradle clean smoke`
@@ -39,4 +41,4 @@ DESKTOP_M(1536 x 864),\
 DESKTOP_S(1280 x 720),\
 MOBILE_M(414 x 896),\
 MOBILE_S(360 x 800),\
-TABLET(768 x 1024);\
+TABLET(768 x 1024);

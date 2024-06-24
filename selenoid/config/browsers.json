@@ -1,0 +1,32 @@
+{
+  "firefox": {
+    "default": "latest",
+    "versions": {
+      "57.0": {
+        "image": "selenoid/firefox:latest",
+        "port": "4444",
+        "path": "/wd/hub"
+      }
+    }
+  },
+  "chrome": {
+    "default": "latest",
+    "versions": {
+      "57.0": {
+        "image": "selenoid/chrome:latest",
+        "port": "4444",
+        "path": "/wd/hub"
+      }
+    }
+  },
+  "edge": {
+    "default": "latest",
+    "versions": {
+      "57.0": {
+        "image": "selenoid/edge:latest",
+        "port": "4444",
+        "path": "/wd/hub"
+      }
+    }
+  }
+}
