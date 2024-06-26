@@ -1,4 +1,4 @@
-# uiWorkForGPB
+# TestWorkForGPB
 
 ## Run in selenoid
 Set up selenoid:\
