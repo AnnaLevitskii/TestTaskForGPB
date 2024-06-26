@@ -35,6 +35,11 @@ task smoke(type:Test){
         suites 'src/test/resources/smoke.xml'
     }
 }
+task selenoid(type:Test){
+    useTestNG(){
+        suites 'src/test/resources/selenoid.xml'
+    }
+}
 task ui(type:Test){
     useTestNG(){
         suites 'src/test/resources/ui.xml'
@@ -70,6 +75,29 @@ task runAllure() {
         }
         exec {
             commandLine 'allure', 'serve', 'build/allure-results'
+        }
+    }
+}
+task runSelenoid() {
+    doLast {
+        exec {
+            commandLine 'docker', 'pull', 'selenoid/vnc_firefox:125.0'
+        }
+        exec {
+            commandLine 'docker', 'pull', 'selenoid/vnc_chrome:125.0'
+        }
+        exec {
+            commandLine 'docker', 'pull', 'selenoid/video-recorder:latest-release'
+        }
+        exec {
+            commandLine 'docker-compose', 'up', '-d'
+        }
+    }
+}
+task killSelenoid() {
+    doLast {
+        exec {
+            commandLine 'docker-compose', 'down', '-v'
         }
     }
 }

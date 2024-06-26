@@ -9,6 +9,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import static com.core.utils.Constants.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -17,8 +18,7 @@ import java.util.List;
 
 import static com.core.providers.TestDataGenerator.*;
 import static com.core.providers.TestDataGenerator.randomText;
-import static com.core.utils.Constants.PASSWORD;
-import static com.core.utils.Constants.USER_NAME;
+
 
 public class ContactPage extends ContactController {
     WebDriver driver;
@@ -28,7 +28,7 @@ public class ContactPage extends ContactController {
     }
 
     public ContactPage removeContact(){
-        if(((RemoteWebDriver) driver).getCapabilities().getBrowserName().equalsIgnoreCase("safari")){
+        if(BROWSER.equalsIgnoreCase("safari") || BROWSER.contains("selenoid")){
             AuthRequestDTO auth = AuthRequestDTO.builder().username(USER_NAME).password(PASSWORD).build();
             new LoginPage(driver).navigateToLoginPage().logIn(auth).assertContactPage();
         }
@@ -56,15 +56,15 @@ public class ContactPage extends ContactController {
     }
 
     public AddPage navigateToAddPage(){
-        if(((RemoteWebDriver) driver).getCapabilities().getBrowserName().equalsIgnoreCase("safari")){
+        if(BROWSER.equalsIgnoreCase("safari") || BROWSER.contains("selenoid")){
             AuthRequestDTO auth = AuthRequestDTO.builder().username(USER_NAME).password(PASSWORD).build();
             new LoginPage(driver).navigateToLoginPage().logIn(auth).assertContactPage();
         }
         try {
             driver.findElement(By.xpath("//a[normalize-space()='ADD']")).click();
-        }catch (ElementNotInteractableException e){
-            driver.manage().window().setSize(new Dimension(896, 414));
-            driver.findElement(By.xpath("//a[normalize-space()='ADD']")).click();
+        }catch (ElementNotInteractableException ex){
+                driver.manage().window().setSize(new Dimension(896, 414));
+                driver.findElement(By.xpath("//a[normalize-space()='ADD']")).click();
         }
         return new AddPage(driver);
     }
