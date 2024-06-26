@@ -1,6 +1,16 @@
 # uiWorkForGPB
 
-docker-compose up -d
+## Run in selenoid
+Set up selenoid:\
+-->  http://localhost:8080/  (Check if Jenkins isnt run on 8080)
+### `gradle runSelenoid`
+
+Run tests in selenoid:
+### `gradle clean selenoid`
+
+Tear down selenoid:
+### `gradle killSelenoid`
+
 
 ## Run locally options
 Run smoke suite:

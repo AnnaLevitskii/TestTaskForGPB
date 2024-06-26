@@ -2,30 +2,22 @@
   "firefox": {
     "default": "latest",
     "versions": {
-      "57.0": {
-        "image": "selenoid/firefox:latest",
+      "125.0": {
+        "image": "selenoid/vnc_firefox:125.0",
         "port": "4444",
-        "path": "/wd/hub"
+        "path": "/wd/hub",
+        "tmpfs": {"/tmp":"size=512m"}
       }
     }
   },
   "chrome": {
     "default": "latest",
     "versions": {
-      "57.0": {
-        "image": "selenoid/chrome:latest",
+      "125.0": {
+        "image": "selenoid/vnc_chrome:125.0",
         "port": "4444",
-        "path": "/wd/hub"
-      }
-    }
-  },
-  "edge": {
-    "default": "latest",
-    "versions": {
-      "57.0": {
-        "image": "selenoid/edge:latest",
-        "port": "4444",
-        "path": "/wd/hub"
+        "path": "/",
+        "tmpfs": {"/tmp":"size=512m"}
       }
     }
   }
