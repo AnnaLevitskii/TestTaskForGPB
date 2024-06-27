@@ -1,11 +1,13 @@
 # TestWorkForGPB
 
+### `gradle build`
+
 ## Run in selenoid
 Set up selenoid:\
--->  http://localhost:8080/  (Check if Jenkins isnt run on 8080)
+-->  http://localhost:8080/  (Run Docker => check if Jenkins isnt run on 8080)
 ### `gradle runSelenoid`
 
-Run tests in selenoid:
+Run tests on selenoid:
 ### `gradle clean selenoid`
 
 Tear down selenoid:

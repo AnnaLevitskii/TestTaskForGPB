@@ -87,6 +87,9 @@ task runSelenoid() {
             commandLine 'docker', 'pull', 'selenoid/vnc_chrome:125.0'
         }
         exec {
+            commandLine 'docker', 'pull', 'browsers/edge:124.0'
+        }
+        exec {
             commandLine 'docker', 'pull', 'selenoid/video-recorder:latest-release'
         }
         exec {
