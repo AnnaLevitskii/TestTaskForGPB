@@ -25,7 +25,10 @@ jobs:
           distribution: 'oracle'
 
       - name: Set up properties file
-        run: echo "${{ secrets.PROPERTIES}}" > src/main/java/com/core/utils/configuration.properties
+        run: echo "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
+
+      - name: Verify file creation
+        run: cat src/main/java/com/core/utils/configuration.properties
 
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
