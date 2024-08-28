@@ -34,5 +34,5 @@ jobs:
         run: ./gradlew build
 
       - name: Run tests with Gradle
-        run: ./gradlew clean smoke --info
+        run: ./gradlew clean smoke
 
