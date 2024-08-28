@@ -25,7 +25,7 @@ jobs:
           distribution: 'oracle'
 
       - name: Set up properties file
-        run: printf "%s" "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
+        run: echo "test_key=test_value" > src/main/java/com/core/utils/configuration.properties
 
       - name: Verify file creation
         run: cat src/main/java/com/core/utils/configuration.properties
