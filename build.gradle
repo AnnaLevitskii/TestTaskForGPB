@@ -30,7 +30,7 @@ dependencies {
 
 test {
     useTestNG(){
-        suites 'src/test/resources/smoke.xml'
+        suites 'src/test/resources/api.xml'
     }
 }
 
