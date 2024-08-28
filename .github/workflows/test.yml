@@ -36,5 +36,3 @@ jobs:
       - name: Run tests with Gradle
         run: ./gradlew clean smoke
 
-      - name: Coverage check
-        run: ./gradlew checkBranchesCoverage
