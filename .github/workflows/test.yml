@@ -1,4 +1,4 @@
-name: API tests
+name: tests
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
           distribution: 'oracle'
 
       - name: Set up properties file
-        run: echo "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
+        run: printf "%s" "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
 
       - name: Verify file creation
         run: cat src/main/java/com/core/utils/configuration.properties
