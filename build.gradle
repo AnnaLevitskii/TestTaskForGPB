@@ -29,7 +29,9 @@ dependencies {
 }
 
 test {
-    useTestNG()
+    useTestNG(){
+        suites 'src/test/resources/smoke.xml'
+    }
 }
 
 task smoke(type:Test){

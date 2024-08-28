@@ -36,9 +36,6 @@ Options run locally ui uis:
 ### `gradlew clean ui -Pbrowser=safari -Pscreen=M_S`
 ### `gradlew clean ui -Pbrowser=safari -Pscreen=T`
 
-Run all uis:
-### `gradlew clean test`
-
 
 Run Allure:
 ### `gradlew runAllure`
