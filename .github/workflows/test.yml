@@ -23,12 +23,21 @@ jobs:
         with:
           java-version: '17'
           distribution: 'oracle'
+          
+      - name: Install Google Chrome
+        run: |
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt install -y ./google-chrome-stable_current_amd64.deb
+
+      - name: Install ChromeDriver
+        run: |  
+            CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+            wget https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/local/bin/
 
       - name: Set up properties file
         run: printf "%s" "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
-
-      - name: Verify file creation
-        run: cat src/main/java/com/core/utils/configuration.properties
 
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
