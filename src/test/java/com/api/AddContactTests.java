@@ -5,11 +5,12 @@ import com.core.models.dto.ContactDTO;
 import com.core.providers.CleanupProvider;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
-
 import static com.core.providers.TestDataGenerator.*;
+
 
 
 public class AddContactTests extends ContactController {
@@ -57,6 +58,7 @@ public class AddContactTests extends ContactController {
         Assert.assertEquals(statusCodeAddContact(contactDTO), 400);
         Assert.assertEquals(getErrorMessageContact(contactDTO), "{address=must not be blank}");
     }
+
 
     @AfterClass
     public void ac(){

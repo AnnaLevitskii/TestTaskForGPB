@@ -24,10 +24,14 @@ dependencies {
     implementation 'io.qameta.allure:allure-rest-assured:2.14.0'
     implementation 'io.qameta.allure:allure-assertj:2.14.0'
     implementation 'io.qameta.allure:allure-testng:2.14.0'
+
+    testImplementation 'org.mock-server:mockserver-netty:5.11.2'
 }
 
 test {
-    useTestNG()
+    useTestNG(){
+        suites 'src/test/resources/api.xml'
+    }
 }
 
 task smoke(type:Test){

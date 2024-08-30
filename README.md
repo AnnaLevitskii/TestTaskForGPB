@@ -1,49 +1,44 @@
-# TestTaskForGPB
-
-### `gradle build`
+# TestWorkForGPB
 
 ## Run in selenoid
 Set up selenoid:\
--->  http://localhost:8080/  (Run Docker => check if Jenkins isnt run on 8080)
-### `gradle runSelenoid`
+-->  http://localhost:8080/  (Check if Jenkins isnt run on 8080)
+### `gradlew runSelenoid`
 
-Run tests on selenoid:
-### `gradle clean selenoid`
+Run tests in selenoid:
+### `gradlew clean selenoid`
 
 Tear down selenoid:
-### `gradle killSelenoid`
+### `gradlew killSelenoid`
 
 
 ## Run locally options
 Run smoke suite:
-### `gradle clean smoke`
+### `gradlew clean smoke`
 
 Options run locally restAssured uis:
-### `gradle clean api`
+### `gradlew clean api`
 
 Options run locally ui uis:
-### `gradle clean ui -Pbrowser=chrome -Pscreen=M_S`
-### `gradle clean ui -Pbrowser=chrome -Pscreen=T`
-### `gradle clean ui -Pbrowser=chrome -Pscreen=D_M`
+### `gradlew clean ui -Pbrowser=chrome -Pscreen=M_S`
+### `gradlew clean ui -Pbrowser=chrome -Pscreen=T`
+### `gradlew clean ui -Pbrowser=chrome -Pscreen=D_M`
 
-### `gradle clean ui -Pbrowser=firefox -Pscreen=D_S`
-### `gradle clean ui -Pbrowser=firefox -Pscreen=M_S`
-### `gradle clean ui -Pbrowser=firefox -Pscreen=T`
+### `gradlew clean ui -Pbrowser=firefox -Pscreen=D_S`
+### `gradlew clean ui -Pbrowser=firefox -Pscreen=M_S`
+### `gradlew clean ui -Pbrowser=firefox -Pscreen=T`
 
-### `gradle clean ui -Pbrowser=MicrosoftEdge -Pscreen=D_S`
-### `gradle clean ui -Pbrowser=MicrosoftEdge -Pscreen=M_S`
-### `gradle clean ui -Pbrowser=MicrosoftEdge -Pscreen=T`
+### `gradlew clean ui -Pbrowser=MicrosoftEdge -Pscreen=D_S`
+### `gradlew clean ui -Pbrowser=MicrosoftEdge -Pscreen=M_S`
+### `gradlew clean ui -Pbrowser=MicrosoftEdge -Pscreen=T`
 
-### `gradle clean ui -Pbrowser=safari -Pscreen=D_S`
-### `gradle clean ui -Pbrowser=safari -Pscreen=M_S`
-### `gradle clean ui -Pbrowser=safari -Pscreen=T`
-
-Run all uis:
-### `gradle clean test`
+### `gradlew clean ui -Pbrowser=safari -Pscreen=D_S`
+### `gradlew clean ui -Pbrowser=safari -Pscreen=M_S`
+### `gradlew clean ui -Pbrowser=safari -Pscreen=T`
 
 
 Run Allure:
-### `gradle runAllure`
+### `gradlew runAllure`
 
 
 ## Options run with different screen sizes
