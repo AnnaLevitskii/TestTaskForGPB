@@ -41,6 +41,13 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Run tests with Gradle
+      - name: Run api tests
+        run: ./gradlew clean api
+
+      - name: Run smoke tests
         run: ./gradlew clean smoke
+
+
+
+
 
