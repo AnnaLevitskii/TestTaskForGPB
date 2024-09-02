@@ -11,7 +11,7 @@ on:
       - test
 
 jobs:
-  build-test-coverage:
+  build-test-report:
 
     runs-on: macos-latest
 
@@ -32,6 +32,13 @@ jobs:
         run: |
           brew install --cask firefox
 
+      - name: Install xmllint
+        run: |
+          brew update
+          brew install libxml2
+          # Обновление пути для xmllint, так как brew может не обновить его автоматически
+          echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> $GITHUB_ENV
+
       - name: Set up properties file
         run: printf "%s" "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
 
@@ -41,6 +48,20 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Run tests with Gradle
+      - name: Run tests api
+        run: ./gradlew clean api
+
+      - name: Run smoke tests
         run: ./gradlew clean smoke
 
+      - name: Copy Gradle Test Reports
+        run: |
+          chmod +x .github/workflows/filter_and_copy.sh
+          ./.github/workflows/filter_and_copy.sh
+
+      - name: Deploy Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .github/workflows/reports
+          publish_branch: gh-pages
