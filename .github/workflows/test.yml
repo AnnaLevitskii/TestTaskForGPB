@@ -34,7 +34,7 @@ jobs:
       - name: Attempt to merge main into gh-pages
         run: |
           git merge origin/main --strategy-option theirs || {
-            echo "Merge conflict occurred, aborting merge."
+            echo "Merge conflict detected, aborting merge."
             git merge --abort
             exit 1
           }
