@@ -1,5 +1,8 @@
 # TestWorkForGPB
 
+After the Tests are automatically run in the GitHub Actions pipeline, 
+the report is published https://annalevitskii.github.io/TestTaskForGPB/
+
 ## Run in selenoid
 Set up selenoid:\
 (Check that Docker is up & Jenkins is not using port 8080)
