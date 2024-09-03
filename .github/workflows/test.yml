@@ -37,15 +37,13 @@ jobs:
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
 
-      - name: Attempt to merge main into gh-pages
+      - name: Merge changes from main into gh-pages
         run: |
           git merge origin/main --strategy-option theirs || {
-            echo "Merge conflict detected, aborting merge."
-            git merge --abort
-            exit 1
+          echo "Merge conflict detected, force resolving conflicts by resetting branch to origin/main";
+          git reset --hard origin/main
           }
       
-
       - name: Push changes to gh-pages with force
         run: git push --force origin gh-pages
 
