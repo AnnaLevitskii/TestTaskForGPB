@@ -30,6 +30,11 @@ jobs:
         run: |
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
+          
+      - name: Pull the latest changes from gh-pages
+        run: |
+          git checkout gh-pages
+          git pull origin gh-pages
 
       - name: Attempt to merge main into gh-pages
         run: |
