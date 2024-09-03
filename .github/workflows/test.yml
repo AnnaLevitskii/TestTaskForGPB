@@ -26,15 +26,16 @@ jobs:
           java-version: '17'
           distribution: 'oracle'
 
+      - name: Setup Git for pushing
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
       - name: Switch to gh-pages branch
         run: |
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
-
-      - name: Pull the latest changes from gh-pages
-        run: |
-          git checkout gh-pages
-          git pull origin gh-pages
 
       - name: Attempt to merge main into gh-pages
         run: |
@@ -43,15 +44,10 @@ jobs:
             git merge --abort
             exit 1
           }
-      - name: Setup Git for pushing
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+      
 
-      - name: Push changes to gh-pages
-        if: success()
-        run: git push origin gh-pages
+      - name: Push changes to gh-pages with force
+        run: git push --force origin gh-pages
 
       - name: Install Google Chrome
         run: |
