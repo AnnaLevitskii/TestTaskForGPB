@@ -38,11 +38,16 @@ jobs:
             git merge --abort
             exit 1
           }
+      - name: Setup Git for pushing
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
       - name: Push changes to gh-pages
         if: success()
         run: git push origin gh-pages
-    
+
       - name: Install Google Chrome
         run: |
           brew install --cask google-chrome
