@@ -2,7 +2,8 @@
 
 ## Run in selenoid
 Set up selenoid:\
--->  http://localhost:8080/  (Check if Jenkins isnt run on 8080)
+(Check that Docker is up & Jenkins is not using port 8080)
+-->  http://localhost:8080/  
 ### `gradlew runSelenoid`
 
 Run tests in selenoid:
