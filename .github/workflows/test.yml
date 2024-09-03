@@ -31,10 +31,18 @@ jobs:
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
 
-      - name: Sync changes from main branch to gh-pages
+      - name: Attempt to merge main into gh-pages
         run: |
-          git merge origin/main    
+          git merge origin/main --strategy-option theirs || {
+            echo "Merge conflict detected, aborting merge."
+            git merge --abort
+            exit 1
+          }
 
+      - name: Push changes to gh-pages
+        if: success()
+        run: git push origin gh-pages
+    
       - name: Install Google Chrome
         run: |
           brew install --cask google-chrome
@@ -78,7 +86,7 @@ jobs:
           publish_branch: gh-pages
 
       - name: Merge changes to main if tests passed
-        if: success()  
+        if: success()
         run: |
           git checkout main
           git merge gh-pages
