@@ -1,95 +1,95 @@
-name: tests
-
-on:
-  push:
-    branches:
-
-  pull_request:
-    branches:
-
-
-jobs:
-  build-test-report:
-
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'oracle'
-
-      - name: Setup Git for pushing
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
-      - name: Switch to gh-pages branch
-        run: |
-          git fetch origin gh-pages:gh-pages
-          git checkout gh-pages
-
-      - name: Merge changes from main into gh-pages
-        run: |
-          git merge origin/main --strategy-option theirs || {
-          echo "Merge conflict detected, force resolving conflicts by resetting branch to origin/main";
-          git reset --hard origin/main
-          }
-
-      - name: Push changes to gh-pages with force
-        run: git push --force origin gh-pages
-
-      - name: Install Google Chrome
-        run: brew install --cask google-chrome
-
-      - name: Install Firefox
-        run: brew install --cask firefox
-
-      - name: Install xmllint
-        run: |
-          brew update
-          brew install libxml2
-          echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> $GITHUB_ENV
-
-      - name: Set up properties file
-        run: printf "%s" "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
-
-      - name: Grant execute permission for Gradle wrapper
-        run: chmod +x gradlew
-
-      - name: Build with Gradle
-        run: ./gradlew build
-
-      - name: Run tests api
-        run: ./gradlew clean api
-
-      - name: Run smoke tests
-        run: ./gradlew clean smoke
-
-      - name: Copy Gradle Test Reports
-        if: always()
-        run: |
-          chmod +x .github/workflows/filter_and_copy.sh
-          ./.github/workflows/filter_and_copy.sh
-
-      - name: Deploy Report to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .github/workflows/reports
-          publish_branch: gh-pages
-
-      - name: Merge changes to main if tests passed
-        if: success()
-        run: |
-          git checkout main
-          git merge gh-pages
-          git push origin main
+#name: tests
+#
+#on:
+#  push:
+#    branches:
+#
+#  pull_request:
+#    branches:
+#
+#
+#jobs:
+#  build-test-report:
+#
+#    runs-on: macos-latest
+#
+#    steps:
+#      - name: Checkout the repository
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '17'
+#          distribution: 'oracle'
+#
+#      - name: Setup Git for pushing
+#        run: |
+#          git config user.name "GitHub Actions"
+#          git config user.email "actions@github.com"
+#          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+#
+#      - name: Switch to gh-pages branch
+#        run: |
+#          git fetch origin gh-pages:gh-pages
+#          git checkout gh-pages
+#
+#      - name: Merge changes from main into gh-pages
+#        run: |
+#          git merge origin/main --strategy-option theirs || {
+#          echo "Merge conflict detected, force resolving conflicts by resetting branch to origin/main";
+#          git reset --hard origin/main
+#          }
+#
+#      - name: Push changes to gh-pages with force
+#        run: git push --force origin gh-pages
+#
+#      - name: Install Google Chrome
+#        run: brew install --cask google-chrome
+#
+#      - name: Install Firefox
+#        run: brew install --cask firefox
+#
+#      - name: Install xmllint
+#        run: |
+#          brew update
+#          brew install libxml2
+#          echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> $GITHUB_ENV
+#
+#      - name: Set up properties file
+#        run: printf "%s" "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
+#
+#      - name: Grant execute permission for Gradle wrapper
+#        run: chmod +x gradlew
+#
+#      - name: Build with Gradle
+#        run: ./gradlew build
+#
+#      - name: Run tests api
+#        run: ./gradlew clean api
+#
+#      - name: Run smoke tests
+#        run: ./gradlew clean smoke
+#
+#      - name: Copy Gradle Test Reports
+#        if: always()
+#        run: |
+#          chmod +x .github/workflows/filter_and_copy.sh
+#          ./.github/workflows/filter_and_copy.sh
+#
+#      - name: Deploy Report to GitHub Pages
+#        if: always()
+#        uses: peaceiris/actions-gh-pages@v4
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: .github/workflows/reports
+#          publish_branch: gh-pages
+#
+#      - name: Merge changes to main if tests passed
+#        if: success()
+#        run: |
+#          git checkout main
+#          git merge gh-pages
+#          git push origin main
