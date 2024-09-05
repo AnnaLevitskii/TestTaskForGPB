@@ -77,7 +77,6 @@ jobs:
       - name: Copy Gradle Test Reports
         if: always()
         run: |
-          ls -R build/reports/tests/test
           chmod +x .github/workflows/filter_and_copy.sh
           ./.github/workflows/filter_and_copy.sh
 
