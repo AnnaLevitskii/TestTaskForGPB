@@ -9,6 +9,14 @@
             <class name="com.ui.RemoveContactTest"/>
         </classes>
     </test>
+    <test name="selenoid_edge">
+        <parameter name="browser" value="edge_selenoid"/>
+        <classes>
+            <class name="com.ui.LoginTest"/>
+            <class name="com.ui.AddContactTest"/>
+            <class name="com.ui.RemoveContactTest"/>
+        </classes>
+    </test>
     <test name="selenoid_firefox">
         <parameter name="browser" value="firefox_selenoid"/>
         <classes>
