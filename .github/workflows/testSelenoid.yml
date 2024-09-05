@@ -55,12 +55,6 @@ jobs:
         - name: Push changes to gh-pages with force
           run: git push --force origin gh-pages
 
-        - name: Install xmllint
-          run: |
-            brew update
-            brew install libxml2
-            echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> $GITHUB_ENV
-
         - name: Set up properties file
           run: printf "%s" "${{ secrets.PROPERTIES }}" > src/main/java/com/core/utils/configuration.properties
 
@@ -75,7 +69,7 @@ jobs:
 
         - name: Tear down Selenoid
           run: ./gradlew killSelenoid
-          
+
         - name: Copy Gradle Test Reports
           if: always()
           run: |
