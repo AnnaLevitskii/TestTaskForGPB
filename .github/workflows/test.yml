@@ -3,15 +3,11 @@ name: tests
 on:
   push:
     branches:
-      - main
-    if: false
+      - non-existent-branch
 
   pull_request:
     branches:
-      - main
-      - test
-    if: false
-
+      - non-existent-branch
 jobs:
   build-test-report:
 
