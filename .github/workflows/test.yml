@@ -43,23 +43,20 @@ jobs:
           echo "Merge conflict detected, force resolving conflicts by resetting branch to origin/main";
           git reset --hard origin/main
           }
-      
+
       - name: Push changes to gh-pages with force
         run: git push --force origin gh-pages
 
       - name: Install Google Chrome
-        run: |
-          brew install --cask google-chrome
+        run: brew install --cask google-chrome
 
       - name: Install Firefox
-        run: |
-          brew install --cask firefox
+        run: brew install --cask firefox
 
       - name: Install xmllint
         run: |
           brew update
           brew install libxml2
-          # Обновление пути для xmllint, так как brew может не обновить его автоматически
           echo 'export PATH="/usr/local/opt/libxml2/bin:$PATH"' >> $GITHUB_ENV
 
       - name: Set up properties file
